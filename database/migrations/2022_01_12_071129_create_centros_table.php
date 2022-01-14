@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCentrosTable extends Migration {
+    public function up() {
+        Schema::create('centros', function (Blueprint $table) {
+            $table->id();
+            $table->integer('codigo')->unsigned();
+            $table->string('nombre', 100);
+            $table->string('web', 255)->nullable();
+            $table->point('situacion')->nullable();
+            $table->bigInteger('coordinador')->unsigned()->nullable();
+            $table->boolean('verificado')->default(false);
+            $table->timestamps();
+        });
+    }
+
+    public function down() {
+        Schema::dropIfExists('centros');
+    }
+}

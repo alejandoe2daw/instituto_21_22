@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CentroController;
 use App\Http\Controllers\API\NivelController;
+use App\Http\Controllers\API\Materia_ImpartidaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
@@ -18,6 +19,9 @@ use Tqdev\PhpCrudApi\Config;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 Route::apiResource('centros', CentroController::class);
 
@@ -25,6 +29,8 @@ Route::apiResource('niveles', NivelController::class)
 ->parameters([
     'niveles' => 'nivel'
 ]);
+
+Route::apiResource('materias_impartidas', Materia_ImpartidaController::class);
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
@@ -38,7 +44,3 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     $response = $api->handle($request);
     return $response;
 })->where('any', '.*');
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});

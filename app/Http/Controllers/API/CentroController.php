@@ -56,7 +56,6 @@ class CentroController extends Controller
     {
         $centroData = json_decode($request->getContent(), true);
         $centro->update($centroData);
-
         return new CentroResource($centro);
     }
 

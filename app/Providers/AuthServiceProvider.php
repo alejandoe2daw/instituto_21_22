@@ -14,8 +14,9 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
+    // Registrar polices
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Centro::class => CentroPolicy::class,
     ];
 
     /**
@@ -27,8 +28,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         //$this->registerPolicies();
 
-        Gate::define('update-centro', function (User $user, Centro $centro) {
-            return $user->id === $centro->coordinador;
-        });
+
     }
 }

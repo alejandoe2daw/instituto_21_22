@@ -17,7 +17,7 @@ use App\Http\Controllers\API\MateriaController;
 use App\Http\Controllers\API\MatriculaController;
 use App\Http\Controllers\API\PeriodoLectivoController;
 use App\Http\Controllers\API\MateriaMatriculadaController;
-
+use App\Models\Centro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
@@ -58,9 +58,12 @@ Route::post('tokens/create', function (Request $request) {
     ]);
 })->name('login');
 
-Route::middleware('auth:sanctum')->
-    apiResource('centros', CentroController::class)
-;
+/*Route::middleware('auth:sanctum')->
+    apiResource('centros', CentroController::class);*/
+
+Route::get('centros/indexOD', [CentroController::class, 'indexOD']); // Revisar
+Route::apiResource('centros', CentroController::class)->middleware('auth:sanctum');
+
 
 Route::apiResource('matriculas', MatriculaController::class);
 

@@ -66,4 +66,10 @@ class User extends Authenticatable
     public function nota(){
         return $this->hasMany(Nota::class, 'user_id');
     }
+    public function esProfesor(){
+        return $this->profesor==true;
+    }
+    public function esAlumno(){
+        return $this->alumno==true;
+    }
 }

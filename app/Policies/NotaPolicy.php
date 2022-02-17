@@ -41,7 +41,7 @@ class NotaPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->esProfesor();
     }
 
     /**
@@ -53,7 +53,7 @@ class NotaPolicy
      */
     public function update(User $user, Nota $nota)
     {
-        //
+        return $user->esProfesor();
     }
 
     /**
@@ -65,7 +65,7 @@ class NotaPolicy
      */
     public function delete(User $user, Nota $nota)
     {
-        return $user->profesor==true;
+        return $user->esProfesor();
     }
 
     /**
@@ -90,5 +90,8 @@ class NotaPolicy
     public function forceDelete(User $user, Nota $nota)
     {
         //
+    }
+    public function media(User $user){
+        return $user->esAlumno();
     }
 }

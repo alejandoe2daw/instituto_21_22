@@ -71,7 +71,7 @@ Route::apiResource('niveles', NivelController::class)
     'niveles' => 'nivel'
 ]);
 
-
+Route::middleware('auth:sanctum')->get('notas/media/{materia_id}', [NotaController::class, 'media']);
 
 Route::apiResource('faltas_profesores', falta_profesorController::class)
 ->parameters([
@@ -98,7 +98,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::any('/{any}', function (ServerRequestInterface $request) {
+/*Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
         'address' => env('DB_HOST', '127.0.0.1'),
         'database' => env('DB_DATABASE', 'forge'),
@@ -111,3 +111,4 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     return $response;
 })->where('any', '.*');
 
+*/

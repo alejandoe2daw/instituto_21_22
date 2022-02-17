@@ -29,7 +29,10 @@ class NotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create',Nota::class); /* Error 405 no 403 REVISAR */
+        $nota = json_decode($request->getContent(), true);
+        $nota = nota::create($nota);
+        return new NotaResource($nota);
     }
 
     /**
@@ -40,7 +43,7 @@ class NotaController extends Controller
      */
     public function show(Nota $nota)
     {
-        //
+        return new NotaResource($nota);
     }
 
     /**
@@ -52,7 +55,10 @@ class NotaController extends Controller
      */
     public function update(Request $request, Nota $nota)
     {
-        //
+        $this->authorize('update', $nota);
+        $notaData = json_decode($request->getContent(), true);
+        $nota->update($notaData);
+        return new NotaResource($nota);
     }
 
     /**
@@ -63,7 +69,18 @@ class NotaController extends Controller
      */
     public function destroy(Nota $nota)
     {
-        $this->authorize('delete', Nota::class);
+        $this->authorize('delete', $nota);
         $nota->delete();
+    }
+    public function media($materia_id, Nota $nota){
+        $materias = $nota->conseguirMaterias($materia_id);
+        $cont=0;
+        $suma=0;
+        foreach($materias as $materia){
+            $cont++;
+            $notas = $materia->nota;
+            $suma += $notas;
+        }
+        return 'La media es => '.$suma/$cont;
     }
 }

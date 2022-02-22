@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CentroController;
+use App\Http\Controllers\API\CursoController;
 use App\Http\Controllers\API\NivelController;
 
 
@@ -82,7 +83,8 @@ Route::middleware('auth:sanctum')->
     apiResource('grupos', GrupoController::class);
 
 Route::apiResource('tutorizados', TutorizadoController::class);
-
+Route::apiResource('cursos', CursoController::class);
+Route::get('cursos/aulavirtual',[CursoController::class, 'aulavirtual']);
 
 
 Route::apiResource('materias', MateriaController::class);

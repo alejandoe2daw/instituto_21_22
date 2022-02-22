@@ -54,6 +54,13 @@ class User extends Authenticatable
             return false;
         }
     }
+    public function isUsuarios_av(){
+        if($this->usuario_av == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     public function centroCoordinado() {
         return $this->hasOne(Centro::class, 'coordinador');
@@ -61,5 +68,9 @@ class User extends Authenticatable
 
     public function grupos() {
         return $this->belongsToMany(Grupo::class, 'matriculas', 'alumno', 'grupo');
+    }
+
+    public function cursos(){
+        return $this->belongsToMany(Curso::class, 'curso_user', 'user_id', 'curso_id');
     }
 }

@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Alejandro Peragon',
             'email' => '1794842@alu.murciaeduca.es',
             'password' => bcrypt('password'),
-            'usuario_av' => 2435306,
+            'usuario_av' => 84920,
         ])->cursos()->attach(\Illuminate\Support\Arr::pluck(Curso::factory()->count(3)->create(), 'id'));
     }
 }

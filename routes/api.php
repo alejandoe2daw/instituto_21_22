@@ -60,7 +60,7 @@ Route::post('tokens/create', function (Request $request) {
 })->name('login');
 
 // Route::get('centros/indexOD', [CentroController::class, 'indexOD'])->middleware('auth:sanctum');
-
+Route::middleware('auth:sanctum')->get('cursos/aulavirtual',[CursoController::class, 'aulavirtual']);
 Route::middleware('auth:sanctum')->
     apiResource('centros', CentroController::class)
 ;
@@ -84,7 +84,7 @@ Route::middleware('auth:sanctum')->
 
 Route::apiResource('tutorizados', TutorizadoController::class);
 Route::apiResource('cursos', CursoController::class);
-Route::get('cursos/aulavirtual',[CursoController::class, 'aulavirtual']);
+
 
 
 Route::apiResource('materias', MateriaController::class);
